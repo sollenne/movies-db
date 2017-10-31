@@ -1,9 +1,6 @@
 import {ModuleWithProviders} from '@angular/core';
 import {Routes, RouterModule} from '@angular/router';
 import {TabsComponent} from './tabs/tabs.component';
-import {ListComponent} from './list/list.component';
-import {ItemComponent} from './item/item.component';
-
 
 const routes: Routes = [
   {
@@ -12,11 +9,11 @@ const routes: Routes = [
     children: [
       {
         path: ':cat',
-        component: ListComponent,
+        component: TabsComponent,
         children: [
           {
-            path: ':item',
-            component: ItemComponent,
+            path: ':mov',
+            component: TabsComponent,
           },
         ],
       },
