@@ -16,6 +16,7 @@ export class TabsComponent implements OnInit {
     private moviesService: MoviesService,
   ) {
     this.movies = [];
+    this.currentGenre = 'All';
   }
 
   public ngOnInit(): void {
