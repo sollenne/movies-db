@@ -1,5 +1,4 @@
-import { Component, OnInit, Input,} from '@angular/core';
-import {HTTPTestService} from '../services/http-test.service';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-item',
@@ -8,15 +7,10 @@ import {HTTPTestService} from '../services/http-test.service';
 })
 
 export class ItemComponent implements OnInit {
-  @Input() movie;
 
-  constructor(private httpService : HTTPTestService) {
-    this.httpService = httpService;
-  }
+  constructor() {}
 
-  ngOnInit() {
-
-  }
+  public ngOnInit(): void {}
 
 
 }

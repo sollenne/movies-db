@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { HTTPTestService } from '../services/http-test.service';
+import { MoviesService } from '../services/movies.service';
+import { Subscription } from 'rxjs/Subscription';
 
 @Component({
   selector: 'app-list',
@@ -8,34 +8,36 @@ import { HTTPTestService } from '../services/http-test.service';
   styleUrls: ['./list.component.css']
 })
 
-
 export class ListComponent implements OnInit, OnDestroy {
-  movies = [];
-  activatedRoute: ActivatedRoute;
-  loadedCat = 'all';
-  subscription;
+  public movies: Array<any>;
+  public category: string;
 
-  constructor(activatedRoute: ActivatedRoute, private httpService: HTTPTestService) {
-    this.activatedRoute = activatedRoute;
-    this.httpService = httpService;
+  constructor(
+    private moviesService: MoviesService,
+  ) {
+    this.movies = [];
   }
 
-  ngOnInit() {
-    this.activatedRoute.params.subscribe(
-      (params) => {
-        this.movies = this.httpService.getMovies(params.cat);
-        this.loadedCat = params.cat;
-      }
-    );
-    this.subscription = this.httpService.moviesChanged.subscribe(
-      () => {
-        this.movies = this.httpService.getMovies(this.loadedCat);
-      }
-    );
+  public ngOnInit(): void {
+    this.initMovieList();
   }
-  ngOnDestroy() {
-    this.subscription.unsubscribe();
+
+  public ngOnDestroy(): void {
   }
+
+  public initMovieList = (): Subscription => {
+    return this.moviesService.getMovies().subscribe(
+      (res) => {
+        console.log(res);
+        this.movies.push(res.results);
+      },
+      (err) => {
+        // handle the error here
+        console.log(err);
+      });
+  }
+
+
 
 }
 

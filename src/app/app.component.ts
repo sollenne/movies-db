@@ -1,19 +1,16 @@
-import { Component } from '@angular/core';
-import {HTTPTestService} from './services/http-test.service';
+import {Component, OnInit} from '@angular/core';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
-  httpService: HTTPTestService;
+export class AppComponent implements OnInit {
+  public movies: Array<any>;
 
-  constructor (httpService: HTTPTestService) {
-    this.httpService = httpService;
+  constructor (
+  ) {
   }
 
-  ngOnInit() {
-    this.httpService.fetchMovies();
-  }
+  public ngOnInit(): void {}
 }
