@@ -23,7 +23,7 @@ export class MoviesService {
     this.apiKey = 'api_key=7d747601908140c3a4c8b02195bc7786';
     this.moviePath = 'https://api.themoviedb.org/3/discover/movie?page=1&include_video=false&include_adult=false&sort_by=popularity.desc&language=en-US&api_key=7d747601908140c3a4c8b02195bc7786';
 
-    this.genrePath = `${this.movieUrl}genre/movie/list?${this.apiKey}&callback=jQuery22408132628371243029_1471207855881&_=1471207855884`;
+    this.genrePath = 'https://api.themoviedb.org/3/genre/movie/list?api_key=7d747601908140c3a4c8b02195bc7786';
 
     this.movies = [];
     this.genres = [];
