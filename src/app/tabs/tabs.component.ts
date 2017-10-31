@@ -8,23 +8,19 @@ import {Subscription} from 'rxjs/Subscription';
   styleUrls: ['./tabs.component.css']
 })
 export class TabsComponent implements OnInit {
-  public movies: any;
-  public categories: Array<string>;
-  public genres: any;
+  public genres: Array<any>;
+  public movies: Array<any>;
+  public currentGenre: any;
 
   constructor(
     private moviesService: MoviesService,
   ) {
-    this.categories = [
-      'all',
-      'action',
-      'drama',
-      'comedy',
-    ];
+    this.movies = [];
   }
 
   public ngOnInit(): void {
     this.initGenreList();
+    this.initMovieList();
   }
 
   public initGenreList = (): Subscription => {
@@ -37,6 +33,22 @@ export class TabsComponent implements OnInit {
         // handle the error here
         console.log(err);
       });
+  }
+
+  public initMovieList = (): Subscription => {
+    return this.moviesService.getMovies().subscribe(
+      (res) => {
+        console.log(res);
+        this.movies.push(res.results);
+      },
+      (err) => {
+        // handle the error here
+        console.log(err);
+      });
+  }
+
+  public tabClick = (genre: any): void => {
+    this.currentGenre = genre;
   }
 
 }
